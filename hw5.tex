@@ -1,0 +1,69 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\usepackage{xcolor}
+\newcommand{\red}[1]{\textbf{\color{red} #1}}
+
+\begin{document}
+
+\title{COMP 418/518: Homework 5 \\[1ex] \large [Weight of homework: 25\% of the final grade]}
+\author{Authors (fill in your names here)}
+
+\maketitle
+
+
+\paragraph{Instructions:}
+
+For this homework, you should work in groups of 2--4 people. Only one member of the group should submit on Canvas. Specify in your submission the members of your group. The submission must be typed in LaTeX using the provided template.
+
+\paragraph{Grading:}
+
+The homework will be graded based on correctness, completeness, and the quality of the provided solutions.
+
+\paragraph{General Information and Context:}
+
+This is the final assignment for the course. We will explore the application of dataflow programming for IoT applications.
+
+In the first part, we will see that relational algebra (as known from database system query languages) can be adapted to the streaming setting and implemented using dataflow techniques. This implementation can form the basis of a fast and lightweight in-memory data processing engine for real-time IoT data.
+
+In the second part, we will use ToyDSL to analyze ECG signal. The analysis will include the detection of peaks (i.e., heartbeats), the calculation of the heart rate, and the computation of various measures of heart rate variability (HRV). The considered algorithms are very lightweight so that they can be used in extremely resource-constrained settings, e.g., in wearable health devices and implantable medical devices.
+
+The code that will be produced in this assignment is appropriate for deployment on devices of the same class as the Raspberry Pi and, more generally, single-board computers. These devices can run an operating system and the JVM.
+
+
+\section{Streaming Relational Algebra [50 points]}
+
+Download the Java project form Canvas. Fill in the code for the relational algebra operators. Your implementation should pass all included unit tests. Answer the following questions:
+\begin{enumerate}
+\item
+Can we implement \texttt{EquiJoin} using \texttt{ThetaJoin}? If yes, how?
+\item
+Is it a good idea to include both \texttt{EquiJoin} and \texttt{ThetaJoin} in a DSL for real-time data processing? Explain.
+\end{enumerate}
+
+\subsection*{Answers}
+
+\red{Fill me in. No more than half a page.}
+
+
+\section{Real-time Analysis of ECG Signal [130 points]}
+
+Download the Java project form Canvas. Fill in the code for ECG analysis. Your implementation should pass all included unit tests. If there is anything that you would like to clarify, please do so below.
+
+\subsection*{Remarks}
+
+\red{Fill me in (if there anything to clarify). No more than half a page.}
+
+
+\section{Embedded Programming [20 points]}
+
+Is it possible to port the Java-based ECG analysis of the previous problem to a microcontroller (MCU) such as the STM32F407 (described in the lectures)? Would it be possible to use an even less capable MCU? Discuss the issues that have to be resolved, what the key considerations are, and if/how you should modify the implementation. Keep in mind that essentially every MCU can be programmed using the C programming language.
+
+\subsection*{Discussion}
+
+\red{Fill me in. No more than 1 page.}
+
+
+\end{document}
