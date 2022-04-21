@@ -10,7 +10,9 @@ public class TrainModel {
 	public static Query<Integer,Double> qLengthAvg() {
 		// TODO
 		// Hint: Use PeakDetection.qLength()
-		return null;
+		Query<Integer, Double> length = PeakDetection.qLength();
+		Query<Integer, Double> result = Q.pipeline(length, Q.foldAvg());
+		return result;
 	}
 
 	public static void main(String[] args) {

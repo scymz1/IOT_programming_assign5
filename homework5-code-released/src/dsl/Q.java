@@ -97,8 +97,7 @@ public class Q {
 		return new Scan<>(init, op);
 	}
 
-	public static <A,B> Query<A,B>
-	sWindowNaive(int wndSize, B init, Func2<B,A,B> op)
+	public static <A,B> Query<A,B> sWindowNaive(int wndSize, B init, Func2<B,A,B> op)
 	{
 		return new SWindowNv<>(wndSize, init, op);
 	}
