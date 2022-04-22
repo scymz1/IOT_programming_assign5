@@ -20,14 +20,15 @@ public class HeartRate {
 	// Average heart rate (over entire signal) in bpm.
 	public static Query<Integer,Double> qHeartRateAvg() {
 		// TODO
-		Query<Long, Integer> count = new PeakDetection.counter<>();
-		// Query<VTL, Integer> q1 = Q.pipeline(new Detect(), count);
-		Query<Integer, Integer> beat = Q.pipeline(PeakDetection.qPeaks(), count);
-		Query<Integer, Double> last = Q.fold((double) 0, (x, y) -> (double) y);
-		Query<Integer, Double> res = Q.pipeline(beat, last);
+		Query<Integer, Double> sub = Q.pipeline(PeakDetection.qPeaks(), Q.sWindow2((x, y) -> (double) y - (double) x));
+		Query<Integer, Double> res = Q.pipeline(sub, Q.map(x -> x / 360));
+		Query<Double, Integer> full_count = Q.pipeline(new PeakDetection.counter<>(), Q.fold(0, (x, y) -> y));
 
-		Query<Integer, Double> result = Q.pipeline(res, Q.map(x -> x / ((double) 5000 / 21600)));
-		return result;
+		Query<Double, Double> avg = Q.parallel(full_count, Q.fold(0.0, (x, y) -> x + y), (x, y) -> y / x);
+
+		Query<Integer, Double> avg_2 = Q.pipeline(res, avg);
+		Query<Integer, Double> rate = Q.pipeline(avg_2, Q.map(x -> 60 / x));
+		return rate;
 	}
 
 	// Standard deviation of NN interval length (over the entire signal)
