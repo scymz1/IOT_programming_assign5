@@ -26,6 +26,7 @@ public class UTestECG {
 
 		assertEquals(16, sink.count);
 		double threshold = sink.last;
+		System.out.println(threshold);
 		assert(300.0 <= threshold && threshold <= 1500.0);
 	}
 
@@ -40,6 +41,7 @@ public class UTestECG {
 
 		assertEquals(1, sink.count);
 		double threshold = sink.last;
+		// System.out.println(threshold);
 		assert(50.0 <= threshold && threshold <= 100.0);
 	}
 
@@ -68,6 +70,7 @@ public class UTestECG {
 
 		assertEquals(1, sink.count);
 		double threshold = sink.last;
+		System.out.println(threshold);
 		assert(10.0 <= threshold && threshold <= 200.0);
 	}
 

@@ -16,7 +16,7 @@ public class PeakDetection {
 	// length: l[n] = t(d[n-w]) + ... + t(d[n+w]), where
 	//         w = 20 (samples) and t(d) = sqrt(1.0 + d * d)
 
-	private static class counter<A> implements Query<A,Integer> {
+	static class counter<A> implements Query<A, Integer> {
 		private int count;
 		public counter() {
 			count=0;
@@ -44,7 +44,7 @@ public class PeakDetection {
 		Query<Integer,Double> smooth=Q.pipeline(Q.sWindowNaive(5, 0, (x,y)->x+y), Q.map(x->(double)x/5));
 		
 		// calculate derivation
-		//Q.ignore(2)
+		// Q.ignore(2)
 		Query<Double,Double> q1= Q.parallel(Q.sWindow3((x, y, z)->z), Q.sWindow3((x, y, z)->x), (x, y)->x-y);
 		Query<Double, Double> deriv=Q.pipeline(q1, Q.map(x->x/2));
 

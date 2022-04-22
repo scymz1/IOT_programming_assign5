@@ -6,7 +6,7 @@ import java.util.Iterator;
 public class Data {
 
 	// TODO: Update the path to the datasets
-	private static final String PATH = "C:\\Users\\11969\\Desktop\\rice\\spring_2022\\IOT algorithm\\IOT_programming_assign5\\homework5-code-released\\data\\";
+	private static final String PATH = "/Users/liyiming/Desktop/518/IOT_programming_assign5/homework5-code-released/data/";
 	/**
 		"/home/konstantinos/Dropbox/Work/" +
 		"Courses-Rice/COMP 418-518 - Spring 2022/homeworks/" +
