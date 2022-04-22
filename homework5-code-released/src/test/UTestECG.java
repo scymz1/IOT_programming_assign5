@@ -85,6 +85,7 @@ public class UTestECG {
 
 		assertEquals(1, sink.count);
 		double threshold = sink.last;
+		System.out.println(threshold);
 		assert(1.0 <= threshold && threshold <= 50.0);
 	}
 

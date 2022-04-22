@@ -76,7 +76,14 @@ public class HeartRate {
 		Query<Double, Double> add = Q.fold((double) 0, (x, y) -> (double) x + 1);
 		Query<Integer, Double> num = Q.pipeline(res, add);
 
-		return num;
+		// number of peaks
+		Query<Long, Integer> count = new PeakDetection.counter<>();
+		Query<Integer, Integer> beat = Q.pipeline(PeakDetection.qPeaks(), count);
+		Query<Integer, Double> add_2 = Q.fold((double) 0, (x, y) -> (double) x + 1);
+		Query<Integer, Double> totalNN = Q.pipeline(beat, add_2, Q.map(x -> x - 1));
+		Query<Integer, Double> result = Q.parallel(num, totalNN, (x, y) -> (double) 100 * x / (double) y);
+
+		return result;
 	}
 
 	public static void main(String[] args) {
